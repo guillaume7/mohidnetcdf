@@ -28,7 +28,7 @@ indenting the line.
 
 == Structures ==
  * `s_plot = struct(...`
-            `'type', type, ...`
+            'type', type, ...`
             `'var2d', var2d, ...`
             `'zt', zt, ...`
             `'zts', zts, ...`
@@ -104,7 +104,6 @@ structure.
             'vec_headlength', vec_headlength, ...
             'vec_headwidth', vec_headwidth, ...
             'vec_shaftwidth', vec_shaftwidth );
-
 
 
 
