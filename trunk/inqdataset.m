@@ -15,5 +15,3 @@ disp({'layers: ', s_cds.zsize});
 disp( s_cds.zsize(1));
 disp( {'time: ', s_cds.serial_time});
 disp( s_cds.gregorian_time(1,:));
-
-end

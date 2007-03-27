@@ -45,5 +45,3 @@ function s_plot = do_map( var2d, s_cfg, s_cds, s_at, s_us)
             'c_y2d', c_y2d);
 %%%%%%%%%%%% End of Plot-type variables %%%%%%%%%
 
-end
-

@@ -12,7 +12,7 @@ function do_plot(s_cfg, s_at, s_pl)
     end
     
     %sets the plot invisible
-    set(gcf, 'Visible', 'off');
+    set(gcf, 'Visible', s_cfg.output_visible);
 
     %%%draws the contours %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if s_cfg.plot_contour
@@ -69,38 +69,48 @@ function do_plot(s_cfg, s_at, s_pl)
      
     %%%draws the vector field%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if s_cfg.plot_vectors
+
         %draws the arrows
         switch(s_pl(1).type)
             case 'map'
-                m_quiver(s_pl(1).c_x2d, ...
-                 s_pl(1).c_y2d, ...
-                 s_pl(2).var2d, ...
-                 s_pl(3).var2d,'k');
+                m_quiver(s_pl(1).c_x2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
+                 s_pl(1).c_y2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
+                 s_pl(2).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
+                 s_pl(3).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), 'k');
             otherwise
-                quiver(s_pl(1).c_x2d, ...
-                 s_pl(1).c_y2d, ...
-                 s_pl(2).var2d, ...
-                 s_pl(3).var2d,'k');
+                quiver(s_pl(1).c_x2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
+                 s_pl(1).c_y2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
+                 s_pl(2).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
+                 s_pl(3).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end),'k');
         end    
    
         hold on
     
-        %vector scale
-        switch(s_pl(1).type)
+       % Draws the arrows scale 
+       switch(s_pl(1).type)
             case 'map'
-                m_quiver(s_cfg.scalequiv);
-                [hpv5, htv5] = m_vec(s_cfg.scalevec);
+                m_quiver(s_cfg.legpos(1), ...
+                        s_cfg.legpos(2), ...
+                        s_cfg.legpos(3), ...
+                        s_cfg.legpos(4), ...
+                        s_cfg.legcol);
             otherwise
-                quiver(s_cfg.scalequiv);
-                [hpv5, htv5] = vec(s_cfg.scalevec);
+                quiver(s_cfg.legpos(1), ...
+                        s_cfg.legpos(2), ...
+                        s_cfg.legpos(3), ...
+                        s_cfg.legpos(4), ...
+                        s_cfg.legcol);
         end
+
+        %Draws the legend
+        htv5 = text( .015, .73, s_cfg.legkey);
         set(htv5,'FontSize',8);
 
         %sets blue sea
         set(gca,'color',[.9 .99 1]);     % Trick is to set this *before* the patch call.
     end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    
+    % Draws the map frame
     switch(s_pl(1).type)
         case 'map'
         %draws the coordinates
