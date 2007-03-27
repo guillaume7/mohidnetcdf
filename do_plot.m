@@ -14,7 +14,7 @@ function do_plot(s_cfg, s_at, s_pl)
     %sets the plot invisible
     set(gcf, 'Visible', 'off');
 
-    %draws the contours
+    %%%draws the contours %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if s_cfg.plot_contour
         
         k=10.0; %number of contour lines
@@ -41,9 +41,9 @@ function do_plot(s_cfg, s_at, s_pl)
         end    
         clabel(cs,h,'fontsize',7,'labelspacing',288);
     
-    end
+    end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    %draws the color array
+    %%%draws the colored map array %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if s_cfg.plot_color
         
         switch(s_pl(1).type)
@@ -65,17 +65,52 @@ function do_plot(s_cfg, s_at, s_pl)
 
         hold on;
         
-    end
+    end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      
-    %draws the vector field
+    %%%draws the vector field%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if s_cfg.plot_vectors
-    end
+        %draws the arrows
+        switch(s_pl(1).type)
+            case 'map'
+                m_quiver(s_pl(1).c_x2d, ...
+                 s_pl(1).c_y2d, ...
+                 s_pl(2).var2d, ...
+                 s_pl(3).var2d,'k');
+            otherwise
+                quiver(s_pl(1).c_x2d, ...
+                 s_pl(1).c_y2d, ...
+                 s_pl(2).var2d, ...
+                 s_pl(3).var2d,'k');
+        end    
+   
+        hold on
+    
+        %vector scale
+        scalevec = {100, -8, 40, ...
+                         .1, 0, 'k', ...
+                         'headlength', s_cfg.vec_headlength, ...
+                         'headwidth', s_cfg.vec_headwidth,...
+                         'shaftwidth', s_cfg.vec_shaftwidth,...
+                         'key', '50 cm s^{-1}'}
+        switch(s_pl(1).type)
+            case 'map'
+                m_quiver(-8,40,.5,0,'k');
+                [hpv5, htv5] = m_vec(scalevec);
+            otherwise
+                quiver(-8,40,.5,0,'k');
+                [hpv5, htv5] = vec(scalevec);
+        end
+        set(htv5,'FontSize',8);
+
+        %sets blue sea
+        set(gca,'color',[.9 .99 1]);     % Trick is to set this *before* the patch call.
+    end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
     
     switch(s_pl(1).type)
         case 'map'
         %draws the coordinates
         m_grid('box','fancy','linestyle','none','fontsize', s_cfg.grid_fontsize);
-    
         %draws the coast line
         m_usercoast(s_cfg.coastline_file,'patch', s_cfg.coastline_patch_color);
     end

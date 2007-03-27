@@ -33,14 +33,19 @@ function plotvar(varname, type, instants, zz, xx, yy)
     s_user = do_user(type, instants, zz, xx, yy); %Builds the appropriate user defined structure
     
     switch type
+        
         case 'map'
-            do_maps(s_cfg, s_cds, s_attr, s_user);            
+            do_maps(s_cfg, s_cds, s_attr, s_user);
+            
         case 'xz'
-            do_xzs(s_cfg, s_cds, s_attr, s_user);            
+            do_xzs(s_cfg, s_cds, s_attr, s_user);
+            
         case 'yz'
-            do_yzs(s_cfg, s_cds, s_attr, s_user);            
+            do_yzs(s_cfg, s_cds, s_attr, s_user);
+            
         case 'xyz'
-            do_xyzs(s_cfg, s_cds, s_attr, s_user);            
+            do_xyzs(s_cfg, s_cds, s_attr, s_user);
+            
         otherwise
             disp('Error in type!');
             return
