@@ -14,11 +14,13 @@ if s_cfg.plot_vectors
     s_ataux = s_at;
     %Get u_component
     s_ataux.varname = s_cfg.u_vec;
-    u_var = get_var(s_cfg, s_ataux, bl_corner, tr_corner, m_bl_corner, m_tr_corner);
+    u_var = get_var(s_cfg, s_ataux, bl_corner, tr_corner, ...
+                    m_bl_corner, m_tr_corner);
     u_var = u_var * s_cfg.scalecolor;
     %Get v_component
     s_ataux.varname = s_cfg.v_vec;
-    v_var = get_var(s_cfg, s_ataux, bl_corner, tr_corner, m_bl_corner, m_tr_corner);
+    v_var = get_var(s_cfg, s_ataux, bl_corner, tr_corner, ...
+                    m_bl_corner, m_tr_corner);
     v_var = v_var * s_cfg.scalecolor;
     list = {var2d, u_var, v_var};
 %No? Then we simply add the user-given variable to our list

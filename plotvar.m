@@ -56,5 +56,3 @@ function plotvar(varname, type, instants, zz, xx, yy)
     if s_cfg.closematlab
         exit;
     end
-    
-end

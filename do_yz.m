@@ -47,6 +47,4 @@ function s_plot = do_yz( var2d, s_cfg, s_cds, s_at, s_us)
             'c_x2d', c_x2d, ...
             'c_y2d', c_y2d);
 %%%%%%%%%%%% End of Plot-type variables %%%%%%%%%
-    
-end
 

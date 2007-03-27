@@ -1,5 +1,7 @@
-function var2d = get_var(s_cfg, s_at, bl_corner, tr_corner, m_bl_corner, m_tr_corner)
-%function var2d = get_var(s_cfg, s_at, bl_corner, tr_corner, m_bl_corner, m_tr_corner)
+function var2d = get_var(s_cfg, s_at, bl_corner, tr_corner, ...
+                        m_bl_corner, m_tr_corner)
+%function var2d = get_var(s_cfg, s_at, bl_corner, tr_corner, ...
+%                       m_bl_corner, m_tr_corner)
 %
 % Extracts the MOHID netcdf data with the landmask
 %

@@ -56,5 +56,3 @@ function s_user = do_user( type, instants, zz, xx, yy)
             disp('Error in type!');
             return
     end
-    
-end
