@@ -86,19 +86,13 @@ function do_plot(s_cfg, s_at, s_pl)
         hold on
     
         %vector scale
-        scalevec = {100, -8, 40, ...
-                         .1, 0, 'k', ...
-                         'headlength', s_cfg.vec_headlength, ...
-                         'headwidth', s_cfg.vec_headwidth,...
-                         'shaftwidth', s_cfg.vec_shaftwidth,...
-                         'key', '50 cm s^{-1}'}
         switch(s_pl(1).type)
             case 'map'
-                m_quiver(-8,40,.5,0,'k');
-                [hpv5, htv5] = m_vec(scalevec);
+                m_quiver(s_cfg.scalequiv);
+                [hpv5, htv5] = m_vec(s_cfg.scalevec);
             otherwise
-                quiver(-8,40,.5,0,'k');
-                [hpv5, htv5] = vec(scalevec);
+                quiver(s_cfg.scalequiv);
+                [hpv5, htv5] = vec(s_cfg.scalevec);
         end
         set(htv5,'FontSize',8);
 
