@@ -7,6 +7,13 @@
 4 - See if it's possible to add overlays on top of overlays of gcf by 
 successive calls on plotvar ? ...
 5 - Add a xyz volumetric type.
+6 - Extract mean vel_x,y,z and flux x,y Portugal --> done
+7 - Extract mean vel_x,y,z and flux x,y Estremadura --> done
+8 - Extract mean S, T Portugal ! Usa antes o NCO ... !
+9 - Extract mean S, T Estremadura
+10 - Extract mean u,v,T,S,level mercator
+11 - Extract mean level Portugal?
+12 - Extract mean level Estremadura?
 
 %%%% getnc variables dimensions order %%%%
 %   [time   depth   lon lat] (u,v,S,T)

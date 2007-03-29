@@ -56,12 +56,12 @@ function do_maps(s_cfg, s_cds, s_at, s_us)
                             ]; %tr_corner (tzxy)
             end
         end
-        m_bl_corner = [layer s_us(n,k).xrange(1) s_us(n,k).yrange(1)];
+        m_bl_corner = [layer s_us(n,k).xrange(1) s_us(n,k).yrange(1)]; %z x y
         m_tr_corner = [layer s_us(n,k).xrange(2) s_us(n,k).yrange(2)];
         
         list = get_vars(s_cfg, s_cds, s_at, s_us(n,k), ...
                           bl_corner, tr_corner, m_bl_corner, m_tr_corner);
-        s_plot = do_map( list, s_cfg, s_cds, s_at, s_us);
+        s_plot = do_map( list, s_cfg, s_cds, s_at, s_us(n,k));
         do_plot(s_cfg, s_at, s_plot);
                 
     end
