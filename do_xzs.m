@@ -44,7 +44,7 @@ function do_xzs(s_cfg, s_cds, s_at, s_us)
 
         list = get_vars(s_cfg, s_cds, s_at, s_us(n,j), ...
                           bl_corner, tr_corner, m_bl_corner, m_tr_corner);
-        s_plot = do_xz( list, s_cfg, s_cds, s_at, s_us);
+        s_plot = do_xz( list, s_cfg, s_cds, s_at, s_us(n,j));
         do_plot(s_cfg, s_at, s_plot);
        
     end

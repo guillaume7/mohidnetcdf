@@ -18,28 +18,32 @@ function do_plot(s_cfg, s_at, s_pl)
     if s_cfg.plot_contour
         
         k=10.0; %number of contour lines
-        cscale = round([0:k]./k*20)/20. * ...
-                round(( s_cfg.colorlimits(2)-s_cfg.colorlimits(1)) * 10.)/10. ...
-                + round(s_cfg.colorlimits(1)*10)/10.;
+        cscale = [0:k]./k * ...
+                ( s_cfg.colorlimits(2)-s_cfg.colorlimits(1)) ...
+                + s_cfg.colorlimits(1);
         ss = find(cscale >= 0.);
-        switch(s_pl(1).type)
-            case 'map'
-            [cs,h]=m_contour( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d, cscale(ss), 'k');
-            otherwise
-            [cs,h]=contour( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d, cscale(ss), 'k');
+        if min(size(ss)) > 0
+            switch(s_pl(1).type)
+                case 'map'
+                [cs,h]=m_contour( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d, cscale(ss), 'k');
+                otherwise
+                [cs,h]=contour( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d, cscale(ss), 'k');
+            end
+            clabel(cs,h,'fontsize',7,'labelspacing',288);
         end
-        clabel(cs,h,'fontsize',7,'labelspacing',288);
     
         hold on;
             
         ss = find(cscale < 0.);
-        switch(s_pl(1).type)
-            case 'map'
-            [cs,h]=m_contour( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d, cscale(ss), 'k--');
-            otherwise
-            [cs,h]=contour( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d, cscale(ss), 'k--');
-        end    
-        clabel(cs,h,'fontsize',7,'labelspacing',288);
+        if min(size(ss)) > 0
+            switch(s_pl(1).type)
+                case 'map'
+                [cs,h]=m_contour( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d, cscale(ss), 'k--');
+                otherwise
+                [cs,h]=contour( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d, cscale(ss), 'k--');
+            end    
+            clabel(cs,h,'fontsize',7,'labelspacing',288);
+        end
     
     end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
@@ -126,7 +130,7 @@ function do_plot(s_cfg, s_at, s_pl)
     xlabel(s_pl(1).x_lab);
     ylabel(s_pl(1).y_lab);
     
-    outfilename = [s_cfg.output_dir, s_at.varname, ...
+    outfilename = [s_cfg.output_dir,'/',s_at.varname, ...
                 '_',s_pl(1).type,'_',s_pl(1).datet, ...
                 '_', s_pl(1).zt, ...
                 '.', s_cfg.output_extension];
