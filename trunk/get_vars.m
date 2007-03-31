@@ -9,7 +9,8 @@ function list = get_vars(s_cfg, s_cds, s_at, s_us, ...
 var2d = get_var(s_cfg, s_at, bl_corner, tr_corner, m_bl_corner, m_tr_corner);
 var2d = var2d * s_cfg.scalecolor;
 
-%Do we want to plot a vector field?
+%Do we want to plot a vector field? 
+%If yes, then we also want to plot the bathymetry contour
 if s_cfg.plot_vectors
     s_ataux = s_at;
     %Get u_component
