@@ -1,0 +1,9 @@
+function plot_title(s_roi)
+%function plot_title(s_roi)
+
+   title([ ...
+        s_roi.dates, ...
+        s_roi.zts], ...
+        'fontsize',10);
+    xlabel(s_roi.x_lab);
+    ylabel(s_roi.y_lab);
