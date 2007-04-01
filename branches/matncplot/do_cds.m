@@ -1,4 +1,4 @@
-function [s_coords] = do_cds(s_cfg)
+function [s_cfg] = do_cds(s_cfg)
 %function [s_coords] = do_cds(s_cfg)
 %
 %This function gets the horizontal and vertical coordinates
@@ -41,11 +41,10 @@ function [s_coords] = do_cds(s_cfg)
     lonlim = [left right];
     latlim = [bottom top];
 
-    s_coords = struct( ...
-            'lat2d', lat2d, ...
-            'lon2d', lon2d, ...
-            'latlim', latlim, ...
-            'lonlim', lonlim, ...
-            'zsize', zsize, ...
-            'gregorian_time', gregorian_time, ...
-            'serial_time', serial_time);
+    s_cfg.lat2d = lat2d;
+    s_cfg.lon2d = lon2d;
+    s_cfg.latlim = latlim;
+    s_cfg.lonlim = lonlim;
+    s_cfg.zsize = zsize;
+    s_cfg.gregorian_time = gregorian_time;
+    s_cfg.serial_time = serial_time;
