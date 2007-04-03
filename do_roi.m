@@ -32,6 +32,8 @@ function s_nc = do_roi( type, instants, zz, xx, yy, s_cfg)
                         s_nc(n,k).bl_corner = [layer, xx(1), yy(1)]; % bl_corner (tzxy)
                         s_nc(n,k).tr_corner = [layer, xx(2), yy(2)]; % tr_corner (tzxy)
                     end
+                    s_nc(n,k).m_bl_corner = [layer xx(1) yy(1)]; %z x y
+                    s_nc(n,k).m_tr_corner = [layer xx(2) yy(2)];
                 else
                     zt = '';
                     s_nc(n,k).zts = '';
@@ -46,9 +48,9 @@ function s_nc = do_roi( type, instants, zz, xx, yy, s_cfg)
                         s_nc(n,k).bl_corner = [xx(1), yy(1)]; %bl_corner (tzxy)
                         s_nc(n,k).tr_corner = [xx(2), yy(2)]; %tr_corner (tzxy)
                     end
+                    s_nc(n,k).m_bl_corner = [length(s_cfg.zsize) xx(1) yy(1)]; %z x y
+                    s_nc(n,k).m_tr_corner = [length(s_cfg.zsize) xx(2) yy(2)];
                 end
-                s_nc(n,k).m_bl_corner = [layer xx(1) yy(1)]; %z x y
-                s_nc(n,k).m_tr_corner = [layer xx(2) yy(2)];
             end
             end        
                             

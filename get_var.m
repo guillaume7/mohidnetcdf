@@ -31,4 +31,4 @@ function var2d = get_var(s_cfg, s_roi)
                   
     nn = find(mask == 0); % Find land
     mask(nn) = NaN; % and NaN it...
-    var2d = var2d .* mask; % Apply the landmask to our data.    
+    var2d = var2d .* mask .* s_cfg.scaleunits; % Apply the landmask to our data.    
