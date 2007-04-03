@@ -67,14 +67,18 @@ function do_plot(s_cfg, s_at, s_pl)
         
         %draws colorbar
         h = colorbar('vert');
-        colorbartitle = [s_at.varname,' (', s_at.units, ')', ...
+        if s_cfg.autocolortitle
+            colorbartitle = [s_at.varname,' (', s_at.units, ')', ...
                 ' x ', num2str(1/s_cfg.scalecolor, '%0.3g')];
+        else
+            colorbartitle = s_cfg.colorbartitle;
+        end
         set(get(h,'title'),'string', colorbartitle);
 
         hold on;
         
     end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-     
+      
     %%%draws the vector field%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if s_cfg.plot_vectors
 
@@ -84,12 +88,12 @@ function do_plot(s_cfg, s_at, s_pl)
                 m_quiver(s_pl(1).c_x2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
                  s_pl(1).c_y2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
                  s_pl(2).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
-                 s_pl(3).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), s_cfg.legscale, 'k');
+                 s_pl(3).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), 0, 'k');
             otherwise
                 quiver(s_pl(1).c_x2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
                  s_pl(1).c_y2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
                  s_pl(2).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
-                 s_pl(3).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), s_cfg.legscale, 'k');
+                 s_pl(3).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), 0, 'k');
         end    
    
         hold on
@@ -101,25 +105,26 @@ function do_plot(s_cfg, s_at, s_pl)
                         s_cfg.legpos(2), ...
                         s_cfg.legpos(3), ...
                         s_cfg.legpos(4), ...
-                        s_cfg.legscale, ...
+                        0, ...
                         s_cfg.legcol);
             otherwise
                 quiver(s_cfg.legpos(1), ...
                         s_cfg.legpos(2), ...
                         s_cfg.legpos(3), ...
                         s_cfg.legpos(4), ...
-                        s_cfg.legscale, ...
+                        0, ...
                         s_cfg.legcol);
         end
 
-        %Draws the legend
-        htv5 = text( s_cfg.legpos(1), s_cfg.legpos(2), s_cfg.legkey);
+        %Draws the legend text( .015, .69, s_cfg.legkey)
+        %htv5 = text( s_cfg.legpos(1), s_cfg.legpos(2), s_cfg.legkey);
+        htv5 = text(.015, .69, s_cfg.legkey);
         set(htv5,'FontSize',8);
 
         %sets blue sea
         %set(gca,'color',[.9 .99 1]);     % Trick is to set this *before* the patch call.
     end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
+        
     % Draws the map frame
     switch(s_pl(1).type)
         case 'map'
@@ -128,10 +133,10 @@ function do_plot(s_cfg, s_at, s_pl)
         %draws the coast line
         m_usercoast(s_cfg.coastline_file,'patch', s_cfg.coastline_patch_color);
     end
-    
+
     title([ ...
-        s_pl(1).dates, ...
-        s_pl(1).zts], ...
+%        s_pl(1).dates, ...
+        s_pl(1).zts(3:end)], ...
         'fontsize',s_cfg.title_fontsize);
     xlabel(s_pl(1).x_lab);
     ylabel(s_pl(1).y_lab);
