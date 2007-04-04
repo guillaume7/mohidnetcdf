@@ -51,7 +51,7 @@ function do_plot(s_cfg, s_at, s_pl)
                 ( s_cfg.colorlimits(2)-s_cfg.colorlimits(1)) ...
                 + s_cfg.colorlimits(1);
         else
-            cscale = s_cfg.contour_scale;
+            cscale = s_cfg.contour_scale * s_cfg.scalecolor;
         end
         ss = find(cscale >= 0.);
         if min(size(ss)) > 0
@@ -153,7 +153,7 @@ function do_plot(s_cfg, s_at, s_pl)
 
     %saves the image
     saveas(gcf, outfilename, s_cfg.output_format);
-    close(gcf);
+    %close(gcf);
 
     mess = ['plotted : ',outfilename];
     disp(mess);
