@@ -97,8 +97,22 @@ function do_plot(s_cfg, s_at, s_pl)
         end    
    
         hold on
+        
+    end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-       % Draws the arrows scale 
+    % Draws the map frame
+    switch(s_pl(1).type)
+        case 'map'
+        %draws the coordinates
+        m_grid('box','fancy','linestyle','none','fontsize', s_cfg.grid_fontsize);
+        %draws the coast line
+        m_usercoast(s_cfg.coastline_file,'patch', s_cfg.coastline_patch_color);
+    end
+
+    %%%draws the vector scale arrow%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    if s_cfg.plot_vectors
+
+        % Draws the arrows scale 
        switch(s_pl(1).type)
             case 'map'
                 m_quiver(s_cfg.legpos(1), ...
@@ -125,15 +139,6 @@ function do_plot(s_cfg, s_at, s_pl)
         %set(gca,'color',[.9 .99 1]);     % Trick is to set this *before* the patch call.
     end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
-    % Draws the map frame
-    switch(s_pl(1).type)
-        case 'map'
-        %draws the coordinates
-        m_grid('box','fancy','linestyle','none','fontsize', s_cfg.grid_fontsize);
-        %draws the coast line
-        m_usercoast(s_cfg.coastline_file,'patch', s_cfg.coastline_patch_color);
-    end
-
     title([ ...
 %        s_pl(1).dates, ...
         s_pl(1).zts(3:end)], ...
