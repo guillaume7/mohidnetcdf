@@ -4,7 +4,9 @@ global contour_scale;
 global contour_line_style;
 global contour_colormap_type;
 
-plot_contour = true;
+plot_contour = false;
+contour_var = 'bathymetry';
+autoscale = true;
 contourlimits = [11 18];
 contour_scale = [11 11.5 12 12.5 13 13.5 14 14.5 15 15.5 16 16.5 17 17.5 18];
 contour_line_style = 'none';
