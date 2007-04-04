@@ -14,6 +14,34 @@ function do_plot(s_cfg, s_at, s_pl)
     %sets the plot invisible
     set(gcf, 'Visible', s_cfg.output_visible);
 
+    %%%draws the colored map array %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    if s_cfg.plot_color
+        
+        switch(s_pl(1).type)
+            case 'map'
+            m_pcolor( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d);
+            otherwise
+            pcolor( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d);
+        end    
+    
+        shading( s_cfg.shading_type);
+        colormap( s_cfg.colormap_type);
+        caxis( s_cfg.colorlimits);
+        
+        %draws colorbar
+        h = colorbar('vert');
+        if s_cfg.autocolortitle
+            colorbartitle = [s_at.varname,' (', s_at.units, ')', ...
+                ' x ', num2str(1/s_cfg.scalecolor, '%0.3g')];
+        else
+            colorbartitle = s_cfg.colorbartitle;
+        end
+        set(get(h,'title'),'string', colorbartitle);
+
+        hold on;
+        
+    end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     %%%draws the contours %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if s_cfg.plot_contour
         
@@ -50,35 +78,7 @@ function do_plot(s_cfg, s_at, s_pl)
         end
     
     end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    %%%draws the colored map array %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    if s_cfg.plot_color
-        
-        switch(s_pl(1).type)
-            case 'map'
-            m_pcolor( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d);
-            otherwise
-            pcolor( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d);
-        end    
-    
-        shading( s_cfg.shading_type);
-        colormap( s_cfg.colormap_type);
-        caxis( s_cfg.colorlimits);
-        
-        %draws colorbar
-        h = colorbar('vert');
-        if s_cfg.autocolortitle
-            colorbartitle = [s_at.varname,' (', s_at.units, ')', ...
-                ' x ', num2str(1/s_cfg.scalecolor, '%0.3g')];
-        else
-            colorbartitle = s_cfg.colorbartitle;
-        end
-        set(get(h,'title'),'string', colorbartitle);
-
-        hold on;
-        
-    end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      
+          
     %%%draws the vector field%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if s_cfg.plot_vectors
 
