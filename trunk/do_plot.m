@@ -153,7 +153,7 @@ function do_plot(s_cfg, s_at, s_pl)
 
     %saves the image
     saveas(gcf, outfilename, s_cfg.output_format);
-    %close(gcf);
+    close(gcf);
 
     mess = ['plotted : ',outfilename];
     disp(mess);
