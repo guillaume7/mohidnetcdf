@@ -31,8 +31,9 @@
   * plotvar('u','xz', 24, [10 42], [1 70], 77)
 
 === Configuration files: ===
+{{{
      config_{global, color, contour, vectors, output, coastline}.m
-
+}}}
   * global  -> sets the source netcdf or mat file
   * color -> sets the colormap limits and a scaling factor
   * contour -> sets the auto or manual contour lines values
@@ -41,12 +42,16 @@
   * coastline -> specifies the coastline mat file
 
 === Functions hierarchy: ===
+{{{
 {plotvar, inqdataset} --> root functions
-  * do_{config, coords, attr, user} --> configuration functions
-  * do_{maps, xzs, xys, xyzs} --> loop functions sorted by plot type
-  * get_{map, xz,xy, xyz} --> get the slice of data sorted by plot type
-  * do_{map, xz, xy, xyz} --> plot the slice of data sorted by type
-  * do_plot --> plots coastline, pcolors, contours and quivers.
+  do_{config, coords, attr, user} --> configuration functions
+  do_{maps, xzs, xys, xyzs} --> loop functions sorted by plot type
+  get_{map, xz,xy, xyz} --> get the slice of data sorted by plot type
+  do_{map, xz, xy, xyz} --> plot the slice of data sorted by type
+  do_plot --> plots coastline, pcolors, contours and quivers.
+}}}
+
+
 
 
 
