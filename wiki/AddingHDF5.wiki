@@ -1,0 +1,18 @@
+#summary One-sentence summary of this page.
+Here we list the improvements required in order to add HDF5 reading functionality to the matlab scripts.
+
+= Functions to Change =
+
+This is a list of the m files that need to be adapted in order to work with HDF5 files input as well:
+
+  *do_attr
+  *do_coords
+  *get_var
+  *get_ncs (???)
+
+= New routines =
+
+  *gethdf5 --> is the equivalent of the getnc.
+  *atthdf5 --> is the equivalent of the attnc.
+  *do_nccoords --> is the old do_coords.
+  *do_coords --> switches between the do_nccoords and the do_hdf5coords.
