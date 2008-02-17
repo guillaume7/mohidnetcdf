@@ -92,7 +92,6 @@ function div(nodeValue) {
     return document.makeElement(myHash);
 }
 
-popw='';
 str=prompt("Type your tex:","%s");
 cols=50;
 match=/<([^<>]*)>/g;
