@@ -57,7 +57,7 @@ function [s_coords] = do_coords(s_cfg)
             serial_rel = nc_varget(s_cfg.file,'time');
             serial_rel = serial_rel / 86400.;
             time_units = nc_attget(s_cfg.file,'time','units');
-            [gregorian_base, rescale_serial_rel, serial_base_jd, serial_base] = parsetnc(time_units);
+            [gregorian_base, rescale_serial_rel, serial_base_jd, serial_base] = do_parsetnc(time_units);
             serial_time_jd = serial_rel + serial_base_jd;
 
             if isempty(serial_time_jd)

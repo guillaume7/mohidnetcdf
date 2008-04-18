@@ -50,9 +50,13 @@ function plotbatim;
     latlim = [bottom top];
 
     %reads batim and prepares coastline
-    batim =  getnc(file,'bathymetry', -1, -1, -1, -2, change_miss, new_miss);
-    [mincolor, minimum] = attnc(file, 'bathymetry', 'minimum');
-    [maxcolor, maximum] = attnc(file, 'bathymetry', 'maximum');
+    %batim =  getnc(file,'bathymetry', -1, -1, -1, -2, change_miss, new_miss);
+    %[mincolor, minimum] = attnc(file, 'bathymetry', 'minimum');
+    %[maxcolor, maximum] = attnc(file, 'bathymetry', 'maximum');
+    %colorlim = [mincolor maxcolor];
+    batim =  nc_varget(file,'bathymetry');
+    mincolor = nc_attget(file, 'bathymetry', 'minimum');
+    maxcolor = nc_attget(file, 'bathymetry', 'maximum');
     colorlim = [mincolor maxcolor];
     
     if save_coastline;
