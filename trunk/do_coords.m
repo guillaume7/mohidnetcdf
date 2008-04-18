@@ -25,16 +25,41 @@ function [s_coords] = do_coords(s_cfg)
         iub = size(lat,1);
         jub = size(lon,2);
     else
-        lon = getnc(s_cfg.file,'lon', -1, -1, -1, -2, s_cfg.change_miss, s_cfg.new_miss);
-        lat = getnc(s_cfg.file,'lat', -1, -1, -1, -2, s_cfg.change_miss, s_cfg.new_miss);
-         %computes limits
+
+        switch (s_cfg.filetype)
+        
+            case 'cdf'
+            lon = getnc(s_cfg.file,'lon', -1, -1, -1, -2, s_cfg.change_miss, s_cfg.new_miss);
+            lat = getnc(s_cfg.file,'lat', -1, -1, -1, -2, s_cfg.change_miss, s_cfg.new_miss);
+            
+            case 'nc'
+            lon = nc_varget(s_cfg.file,'lon');
+            lat = nc_varget(s_cfg.file,'lat');
+
+            otherwise
+            
+        end
+        
+        %computes limits
         iub = size(lat,1);
         jub = size(lon,1);
+        
     end
 
-    zsize = getnc(s_cfg.file,'depth', -1, -1, -1, -2, s_cfg.change_miss, s_cfg.new_miss);
+    switch (s_cfg.filetype)
+        
+        case 'cdf'
+            zsize = getnc(s_cfg.file,'depth', -1, -1, -1, -2, s_cfg.change_miss, s_cfg.new_miss);
+            [gregorian_time, serial_time] = timenc(s_cfg.file);
+            
+        case 'nc'
+            zsize = nc_varget(s_cfg.file,'depth');
+            [gregorian_time, serial_time] = timenc(s_cfg.file);
+
+        otherwise
+            
+    end
     
-    [gregorian_time, serial_time] = timenc(s_cfg.file);
 
     disp('Computing coordinates...');
     

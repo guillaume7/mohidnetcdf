@@ -31,6 +31,11 @@ function s_plot = do_map( var2d, s_cfg, s_cds, s_at, s_us)
 
     c_x2d = s_cds.lon2d( s_us.yrange(1):s_us.yrange(2), s_us.xrange(1):s_us.xrange(2));
     c_y2d = s_cds.lat2d( s_us.yrange(1):s_us.yrange(2), s_us.xrange(1):s_us.xrange(2));
+
+    if s_cfg.filetype == 'nc'
+        c_x2d = c_x2d';
+        c_y2d = c_y2d';
+    end
     
     s_plot = struct(...
             'type', type, ...

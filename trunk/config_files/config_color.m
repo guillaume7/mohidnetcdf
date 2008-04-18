@@ -6,7 +6,7 @@ global scalecolor;
 global autocolortitle;
 global colorbartitle;
 
-plot_color = false;
+plot_color = true;
 colorlimits = [7 18]; %Salt --> xz
 scalecolor = 1.; %
 colorlimits = colorlimits .* scalecolor;

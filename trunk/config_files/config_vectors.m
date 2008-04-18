@@ -9,7 +9,7 @@ global legpos;
 global legscale;
 global legkey;
 
-plot_vectors = true;
+plot_vectors = false;
 u_vec = 'Vel_X';
 v_vec = 'Vel_Y';
 inc = 1;  %increment value to plot the arrows

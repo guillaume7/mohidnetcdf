@@ -1,7 +1,7 @@
 function var = getmat(file, varid, bl_corner, tr_corner, stride)
 %function var = getmat(file, varid, bl_corner, tr_corner, stride)
 %
-%% y, x, z
+% y, x, z
 
 s = load(file, varid);
 fvar = getfield(s, varid);
