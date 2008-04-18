@@ -25,7 +25,14 @@ function do_coast(lat2d, lon2d,lonlim,latlim,batim,colorlim)
     %sets the plot invisible
     set(gcf, 'Visible', 'Off');
     
-    %draws the contour 
+    switch(filetype)
+        case 'nc'
+            lat2d = lat2d';
+            lon2d = lon2d';
+        otherwise
+    end
+
+    %draws the contour
     [cs,h]=m_contour(lon2d,lat2d,batim,batim_contour_scale,'k');
     clabel(cs,h,'fontsize',7,'labelspacing',288);
     
