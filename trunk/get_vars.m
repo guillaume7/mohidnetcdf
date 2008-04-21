@@ -6,7 +6,14 @@ function list = get_vars(s_cfg, s_cds, s_at, s_us, ...
 %
 
 %Gets the typical variable called by the user
-var2d = get_var(s_cfg, s_at, bl_corner, tr_corner, m_bl_corner, m_tr_corner);
+[var2d mask] = get_var(s_cfg, s_at, bl_corner, tr_corner, m_bl_corner, m_tr_corner);
+
+switch(s_us.type)
+    case 'map'
+        var2d = var2d .* mask;
+    otherwise
+end
+
 var2d = var2d * s_cfg.scalecolor;
 
 %Do we want to plot a vector field? 
@@ -23,8 +30,8 @@ if s_cfg.plot_vectors
     v_var = get_var(s_cfg, s_ataux, bl_corner, tr_corner, ...
                     m_bl_corner, m_tr_corner);
     v_var = v_var * s_cfg.scalecolor;
-    list = {var2d, u_var, v_var};
+    list = {var2d, mask, u_var, v_var};
 %No? Then we simply add the user-given variable to our list
 else
-    list = var2d;
+    list = {var2d, mask};
 end
