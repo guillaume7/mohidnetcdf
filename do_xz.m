@@ -40,10 +40,10 @@ function s_plot = do_xz( var2d, s_cfg, s_cds, s_at, s_us)
        var2d = -1 .* var2d;
     end
 
-    if s_cfg.filetype == 'nc'
-        c_x2d = c_x2d';
-        c_y2d = c_y2d';
-    end
+    %if s_cfg.filetype == 'nc'
+    %    c_x2d = c_x2d';
+    %    c_y2d = c_y2d';
+    %end
 
     s_plot = struct(...
             'type', type, ...
