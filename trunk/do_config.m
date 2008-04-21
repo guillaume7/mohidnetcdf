@@ -56,7 +56,7 @@ cd(setup_dir);
 
 disp('Loading user defined config')
 
-%Get user configuration input
+%Get default configuration input
 config_netcdf;
 config_batim;
 config_coastline;
