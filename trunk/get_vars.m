@@ -11,6 +11,10 @@ function list = get_vars(s_cfg, s_cds, s_at, s_us, ...
 switch(s_us.type)
     case 'map'
         var2d = var2d .* mask;
+    case 'xz'
+        var2d = var2d .* mask;
+    case 'yz'
+        var2d = var2d .* mask;
     otherwise
 end
 
@@ -33,5 +37,5 @@ if s_cfg.plot_vectors
     list = {var2d, mask, u_var, v_var};
 %No? Then we simply add the user-given variable to our list
 else
-    list = {var2d, mask};
+    list = var2d;
 end

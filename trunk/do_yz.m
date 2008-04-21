@@ -36,8 +36,8 @@ function s_plot = do_yz( var2d, s_cfg, s_cds, s_at, s_us)
     c_y2d = c_z * ones(size(c_x));
 
     %if s_cfg.filetype == 'nc'
-    %    c_x2d = c_x2d';
-    %    c_y2d = c_y2d';
+        c_x2d = c_x2d';
+        c_y2d = c_y2d';
     %end
 
     s_plot = struct(...
