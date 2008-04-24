@@ -36,18 +36,19 @@ function s_plot = do_xz( var2d, s_cfg, s_cds, s_at, s_us)
     c_y2d = c_z * ones(size(c_x));
     
     %Is it the meridional velocity we want to plot?
-    if (strcmp(s_at.varname,'v') || strcmp(s_at.varname,'Vel_Y'))
-       var2d = -1 .* var2d;
-    end
+    %if (strcmp(s_at.varname,'v') || strcmp(s_at.varname,'Vel_Y'))
+    %   var2d = -1 .* var2d;
+    %end
 
     %if s_cfg.filetype == 'nc'
-        c_x2d = c_x2d';
-        c_y2d = c_y2d';
+    %    c_x2d = c_x2d';
+    %    c_y2d = c_y2d';
     %end
 
     s_plot = struct(...
             'type', type, ...
             'var2d', var2d', ...
+            'lat', s_cds.lat2d(s_us.ysection,1), ...
             'zt', zt, ...
             'zts', zts, ...
             'datet', datet, ...

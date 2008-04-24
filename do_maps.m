@@ -9,6 +9,7 @@ function do_maps(s_cfg, s_cds, s_at, s_us)
     for n = 1 : ninstants
     for k = 1 : nlayers
         
+        %var2d
         if s_us(n,k).layer > 0           
             layer = s_us(n,k).layer;
             if s_us(n,k).instant > 0
@@ -23,16 +24,16 @@ function do_maps(s_cfg, s_cds, s_at, s_us)
                             s_us(n,k).layer ...
                             s_us(n,k).xrange(2) ...
                             s_us(n,k).yrange(2) ...
-                            ]; %tr_corner (tzxy)
+                            ]; % tr_corner (tzxy)
             else
                 bl_corner = [layer ...
                             s_us(n,k).xrange(1) ...
                             s_us(n,k).yrange(1) ...
-                            ]; %tr_corner (zxy)
+                            ]; % tr_corner (zxy)
                 tr_corner = [layer ...
                             s_us(n,k).xrange(2) ...
                             s_us(n,k).yrange(2) ...
-                            ]; %tr_corner (zxy)
+                            ]; % tr_corner (zxy)
             end
         else
             layer = length(s_cds.zsize);
@@ -56,11 +57,20 @@ function do_maps(s_cfg, s_cds, s_at, s_us)
                             ]; %tr_corner (xy)
             end
         end
+        
+        %mask
         m_bl_corner = [layer s_us(n,k).xrange(1) s_us(n,k).yrange(1)]; %z x y
         m_tr_corner = [layer s_us(n,k).xrange(2) s_us(n,k).yrange(2)];
         
+        %bathym
+        bat_bl_corner = [s_us(n,k).xrange(1) s_us(n,k).yrange(1)]; %x y
+        bat_tr_corner = [s_us(n,k).xrange(2) s_us(n,k).yrange(2)];
+        
         list = get_vars(s_cfg, s_cds, s_at, s_us(n,k), ...
-                          bl_corner, tr_corner, m_bl_corner, m_tr_corner);
+                        bl_corner, tr_corner, ...
+                        m_bl_corner, m_tr_corner, ...
+                        bat_bl_corner, bat_tr_corner);
+                      
         s_plot = do_map( list, s_cfg, s_cds, s_at, s_us(n,k));
         do_plot(s_cfg, s_at, s_plot);
                 

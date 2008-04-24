@@ -21,8 +21,8 @@ function plotbatim;
         iub = size(lat,1);
         jub = size(lon,2);
     else
-        lon = getnc(file,'lon', -1, -1, -1, -2, change_miss, new_miss);
-        lat = getnc(file,'lat', -1, -1, -1, -2, change_miss, new_miss);
+        lon = nc_varget(file,'lon');
+        lat = nc_varget(file,'lat');
          %computes limits
         iub = size(lat,1);
         jub = size(lon,1);
