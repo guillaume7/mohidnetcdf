@@ -4,11 +4,13 @@ function do_plot(s_cfg, s_at, s_pl)
 %Plots a graphic with contour and pcolor
 %
     switch(s_pl(1).type)
+
         case 'map'
         lonlim = [min(min(s_pl(1).c_x2d)) max(max(s_pl(1).c_x2d))];
         latlim = [min(min(s_pl(1).c_y2d)) max(max(s_pl(1).c_y2d))];
         %draws projection
         m_proj(s_cfg.projection,'long', lonlim,'lat', latlim);
+
     end
     
     %sets the plot invisible
@@ -18,10 +20,13 @@ function do_plot(s_cfg, s_at, s_pl)
     if s_cfg.plot_color
         
         switch(s_pl(1).type)
+
             case 'map'
             m_pcolor( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d);
+            
             otherwise
             pcolor( s_pl(1).c_x2d, s_pl(1).c_y2d, s_pl(1).var2d);
+            
         end    
     
         shading( s_cfg.shading_type);
@@ -30,12 +35,14 @@ function do_plot(s_cfg, s_at, s_pl)
         
         %draws colorbar
         h = colorbar('vert');
-        if s_cfg.autocolortitle
+        
+        if s_cfg.autocolortitle        
             colorbartitle = [s_at.varname,' (', s_at.units, ')', ...
-                ' x ', num2str(1/s_cfg.scalecolor, '%0.3g')];
+                ' x ', num2str(1/s_cfg.scalecolor, '%0.3g')];        
         else
-            colorbartitle = s_cfg.colorbartitle;
+            colorbartitle = s_cfg.colorbartitle;        
         end
+        
         set(get(h,'title'),'string', colorbartitle);
 
         hold on;
@@ -87,13 +94,13 @@ function do_plot(s_cfg, s_at, s_pl)
             case 'map'
                 m_quiver(s_pl(1).c_x2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
                  s_pl(1).c_y2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
-                 s_pl(3).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
-                 s_pl(4).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), 0, 'k');
+                 s_pl(4).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
+                 s_pl(5).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), 0, 'k');
             otherwise
                 quiver(s_pl(1).c_x2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
                  s_pl(1).c_y2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
-                 s_pl(3).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
-                 s_pl(4).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), 0, 'k');
+                 s_pl(4).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), ...
+                 s_pl(5).var2d( 1:s_cfg.inc:end, 1:s_cfg.inc:end), 0, 'k');
         end
    
         hold on
@@ -102,11 +109,45 @@ function do_plot(s_cfg, s_at, s_pl)
     
     % Draws the map frame
     switch(s_pl(1).type)
+        
         case 'map'
         %draws the coordinates
         m_grid('box','fancy','linestyle','none','fontsize', s_cfg.grid_fontsize);
+        
+        %draws the isobath
+        [isobatc,h]=m_contour(...
+                            s_pl(3).c_x2d, ...
+                            s_pl(3).c_y2d, ...
+                            s_pl(3).var2d, ...
+                            s_pl(3).depth, ...
+                            'k');
+        %Draws a patched contour --> doesn't works well with maps                
+        %m_patchcontour(isobatc);
+        
         %draws the coast line
-        m_usercoast(s_cfg.coastline_file,'patch', s_cfg.coastline_patch_color);
+        m_usercoast(s_cfg.coastline_file,'patch', s_cfg.coastline_patch_color);       
+        
+        case 'xz'
+        %Draws a patched contour --> doesn't works well with map
+        contourx = [ max( s_pl(3).c_x2d(1,1) ) ...
+                    s_pl(3).c_x2d(1,:) ...
+                    max( s_pl(3).c_x2d(1,end) ) ];
+        contoury = -1 .* [ max( s_pl(3).var2d ) ...
+                    s_pl(3).var2d' ...
+                    max( s_pl(3).var2d ) ];
+        patch(contourx,contoury, [.5 .5 .5]);
+        
+        case 'yz'
+        contourx = [ max( s_pl(3).c_x2d(1,1) ) ...
+                    s_pl(3).c_x2d(1,:) ...
+                    max( s_pl(3).c_x2d(1,end) ) ];
+        contoury = -1 .* [ max( s_pl(3).var2d ) ...
+                    s_pl(3).var2d ...
+                    max( s_pl(3).var2d ) ];
+        patch(contourx,contoury, [.5 .5 .5]);
+        
+        otherwise
+            
     end
 
     %%%draws the vector scale arrow%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
