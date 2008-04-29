@@ -15,6 +15,10 @@ function do_plot(s_cfg, s_at, s_pl)
     
     %sets the plot invisible
     set(gcf, 'Visible', s_cfg.output_visible);
+    
+    %Define correct renderers
+    set(gcf, 'RendererMode', 'Manual');
+    set(gcf, 'Renderer', s_cfg.output_renderer);
 
     %%%draws the colored map array %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if s_cfg.plot_color
@@ -193,6 +197,7 @@ function do_plot(s_cfg, s_at, s_pl)
                 '.', s_cfg.output_extension];
 
     %saves the image
+    %print(gcf, '-dpng','-painters', outfilename);
     saveas(gcf, outfilename, s_cfg.output_format);
     close(gcf);
 
