@@ -33,6 +33,9 @@ switch(s_us.type)
     otherwise
 end
 
+%Fill the gaps
+var2d = interpol(var2d);
+
 var2d = var2d * s_cfg.scalecolor;
 
 %Do we want to plot a vector field? 
