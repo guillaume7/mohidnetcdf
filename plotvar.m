@@ -6,7 +6,7 @@ function plotvar(varname, type, instants, zz, xx, yy)
 %   Handles the reading and the vector, contour and color plotting 
 %   of a given MOHID netcdf file
 %
-%function plotvar(varname, type, instants, zz, xx, yy)
+%Function plotvar(varname, type, instants, zz, xx, yy)
 %Remember to edit the config_*.m files prior to running the plotvar.
 %
 %   varname  -> the name of the variable (e.g. 'salinity')
