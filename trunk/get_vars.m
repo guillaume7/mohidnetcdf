@@ -15,26 +15,26 @@ function list = get_vars(s_cfg, s_cds, s_at, s_us, ...
 
 switch(s_us.type)
     case 'map'
-        
-        %var2d = var2d .* mask;
-        
+               
     case 'xz'
 
         %Is it the meridional velocity we want to plot?
         if (strcmp(s_at.varname,'v') || strcmp(s_at.varname,'Vel_Y'))
            var2d = -1 .* var2d;
         end
-        %var2d = var2d .* mask;
-        
+
     case 'yz'
-        
-        %var2d = var2d .* mask;
         
     otherwise
 end
 
 %Fill the gaps
-var2d = interpol(var2d);
+switch (s_cfg.maskit)
+    case 'mask'
+        var2d = var2d .* mask;    
+    case 'interpol'
+        var2d = interpol(var2d);    
+end
 
 var2d = var2d * s_cfg.scalecolor;
 
