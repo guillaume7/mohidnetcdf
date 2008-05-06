@@ -21,8 +21,11 @@ for l=1:length(cut)
     switch type
 
         case 'xz'
-        start=[time depthl(1)   width(1)    cut] - 1;
-        count=[1    depthl(2)   width(2)    1];
+        %start=[time depthl(1)   width(1)    cut] - 1;
+        %count=[1    depthl(2)   width(2)    1];
+
+        start=[1 depthl(1)   width(1)    cut] - 1;
+        count=[49    depthl(2)   width(2)    1];
 
         case 'yz'
         start=[time depthl(1)   cut width(1)] - 1;
