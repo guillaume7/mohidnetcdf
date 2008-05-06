@@ -20,7 +20,7 @@ for i=1:siz(2)
 end
 
 %Computes the colorbar tick labels for "depth".
-k=6; %6 is the default number of ticks in the colorbar.
+k=8; %6 is the default number of ticks in the colorbar.
 zlim = [min( depth) max( depth)];
 zscale = [k:-1:0.]/k * ( zlim(2) - zlim(1)) + zlim(1);
 
