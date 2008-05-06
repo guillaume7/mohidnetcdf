@@ -5,6 +5,7 @@ function [outfilename, dates, cuts]=do_filename(file, type, time, cut, format, w
 %format={png, jpg, bmp, eps, pdf ...}
 
 model='Portugal'; % Users, change this manually
+out_dir = [format,'/'];
 
 %Transform date into string
 serial_time = do_time(file);
@@ -24,7 +25,7 @@ switch type
     otherwise
 end
 
-outfilename=[   'TS_',...
+outfilename=[  out_dir, 'TS_',...
                  model,'_',...
                  datets,'_',...
                  type,'_',...
