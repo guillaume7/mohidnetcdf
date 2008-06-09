@@ -7,10 +7,11 @@
 % >> makeTS
 
 %TS ROI
-file='D:\projectos\GCode\MohidNetcdf\20080326_Portugal_WaterProperties.nc';     
+%file='D:\projectos\GCode\MohidNetcdf\20080326_Portugal_WaterProperties.nc';     
+file='D:\Aplica\PreOp-Model\WestIberia_ET2_2K4\Portugal\res\20080528_Portugal_WaterProperties.nc';
 type='xz'; %xz, yz only.
-time=6;
-cut=100; %p=lat(xz)/lon(yz)
+time=4;
+cut=70; %p=lat(xz)/lon(yz)
 width=[1 117]; %xz=[1 117] yz=[1 177] p=lon(xz)/lat(yz)
 depthl=[1 42];
 
@@ -21,11 +22,8 @@ for l=1:length(cut)
     switch type
 
         case 'xz'
-        %start=[time depthl(1)   width(1)    cut] - 1;
-        %count=[1    depthl(2)   width(2)    1];
-
-        start=[1 depthl(1)   width(1)    cut] - 1;
-        count=[49    depthl(2)   width(2)    1];
+        start=[time depthl(1)   width(1)    cut] - 1;
+        count=[2    depthl(2)   width(2)    1];
 
         case 'yz'
         start=[time depthl(1)   cut width(1)] - 1;
