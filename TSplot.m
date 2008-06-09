@@ -19,13 +19,15 @@ for i=1:siz(2)
                 -1 * depth);
 end
 
-%Computes the colorbar tick labels for "depth".
-k=8; %6 is the default number of ticks in the colorbar.
-zlim = [min( depth) max( depth)];
-zscale = [k:-1:0.]/k * ( zlim(2) - zlim(1)) + zlim(1);
-
 %Draws the colorbar (depth).
 h=colorbar;
+Yticks=get(h, 'YTick');
+
+%Computes the colorbar tick labels for "depth".
+k=length(Yticks)-1; %6 is the default number of ticks in the colorbar.
+zlim = [min( depth) max( depth)];
+zscale = [k:-1:0.]/k * ( zlim(2) - zlim(1) ) + zlim(1);
+
 set(get(h,'title'), ...
     'string', 'Depth (m)');
 set(h, 'YTickLabel', fix(zscale));

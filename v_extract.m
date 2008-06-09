@@ -15,8 +15,7 @@ function [vv, v2d, vlim] = v_extract(file,variable,start,count,res)
     end
     end
     
-    vv=v;
-    %vv=v_av;
+    vv=v_av;
     
     %ajuster v2d en ftion de la valeur moyenne ou la valeur instantanée
     
