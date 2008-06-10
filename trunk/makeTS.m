@@ -11,7 +11,7 @@
 file='D:\Aplica\PreOp-Model\WestIberia_ET2_2K4\Portugal\res\20080528_Portugal_WaterProperties.nc';
 type='xz'; %xz, yz only.
 time=4;
-cut=70; %p=lat(xz)/lon(yz)
+cut=100; %p=lat(xz)/lon(yz)
 width=[1 117]; %xz=[1 117] yz=[1 177] p=lon(xz)/lat(yz)
 depthl=[1 42];
 
@@ -53,8 +53,8 @@ for l=1:length(cut)
     [dens S T Sdata Tdata depth]=TSDiag(file,start,count);
 
     %Get metadata
-    format='png'; %png, jpg, bmp, eps, pdf, ...
-    [outfilename, dates, cuts]=do_filename(file, type, time, cut, 'png', width);
+    format='epsc'; %png, jpg, bmp, eps, epsc, pdf, ...
+    [outfilename, dates, cuts]=do_filename(file, type, time, cut, format, width);
 
     %Plot the data
     h=TSplot(dens-1000, S, T, Sdata, Tdata, depth, [dates, ' ', cuts]);
