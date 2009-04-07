@@ -155,6 +155,7 @@ Module ModuleHydrodynamicFile
     ! Bathymetry integration type
     integer, parameter :: MaxVal_Type  = 1
     integer, parameter :: MeanVal_Type = 2
+    integer, parameter :: MeanVal_Type2 = 2
     
     character(LEN = StringLength), parameter :: Char_MaxVal_Type  = trim(adjustl('MaxVal_Type' ))
     character(LEN = StringLength), parameter :: Char_MeanVal_Type = trim(adjustl('MeanVal_Type'))
