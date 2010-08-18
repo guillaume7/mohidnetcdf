@@ -1,5 +1,5 @@
 #summary User's guide
-#labels Phase-Deploy,usersguide
+#labels Phase-Deploy,Featured
 
 =User's Guide=
 
@@ -50,8 +50,6 @@
   do_{map, xz, xy, xyz} --> plot the slice of data sorted by type
   do_plot --> plots coastline, pcolors, contours and quivers.
 }}}
-
-
 
 
 
