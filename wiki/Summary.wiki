@@ -1,0 +1,13 @@
+Scripts for plotting [http://www.mohid.com MOHID] netcdf files in matlab.
+
+Prerequisites are [http://www.matlab.com Matlab] version 6.5 or greater, [http://mexcdf.sourceforge.net/ mexnc], and [http://www.eos.ubc.ca/~rich/map.html m_map].
+
+Here's a summarized [http://code.google.com/p/mohidnetcdf/wiki/UsersGuide user's guide].
+
+Here's the [http://code.google.com/p/mohidnetcdf/wiki/DeveloppersHandbook developper handbook].
+
+[http://www.mohid.com http://farm1.static.flickr.com/187/435329236_2aa8a88710.jpg?v=0]
+
+[http://www.mohid.com http://farm1.static.flickr.com/200/513549479_b5e269cc47.jpg?v=0]
+
+[http://www.mohid.com http://farm1.static.flickr.com/224/513549681_1a1619309c.jpg?v=0]
